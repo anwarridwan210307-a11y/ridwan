@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RPhone Store - Solusi Gadget Cepat</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+      /* --- FLOATING WHATSAPP BUTTON --- */
+.floating-wa {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 40px;
+    right: 40px;
+    background-color: #25d366; /* Warna khas WhatsApp */
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+    z-index: 10000; /* Agar selalu di atas segalanya */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.floating-wa:hover {
+    background-color: #128c7e;
+    transform: scale(1.1); /* Efek membesar sedikit saat disentuh */
+    color: #FFF;
+}
+
+/* Animasi sederhana agar tombol menarik perhatian */
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
+    70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+.floating-wa {
+    animation: pulse 2s infinite;
+}
+      /* --- NAVBAR STYLES --- */
+html {
+    scroll-behavior: smooth; /* Agar scrollnya halus saat diklik */
+}
+
+.navbar {
+    position: fixed; /* Supaya navbar tetap di atas saat discroll */
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #ffffff;
+    padding: 15px 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* Bayangan halus */
+    z-index: 1000; /* Supaya selalu di atas elemen lain */
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--black-text);
+    text-decoration: none;
+}
+
+.navbar-logo span {
+    color: var(--pink-accent); /* Aksen Pink pada logo */
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--pink-accent);
+}
+
+/* Tombol khusus Kontak di Navbar */
+.btn-contact {
+    background-color: var(--pink-accent);
+    color: white !important;
+    padding: 8px 20px;
+    border-radius: 20px;
+}
+
+.btn-contact:hover {
+    background-color: #d63384;
+}
+
+/* Agar konten tidak tertutup navbar fixed */
+body {
+    padding-top: 70px; 
+}
+
+/* Responsif Navbar untuk HP */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none; /* Sembunyikan menu di HP agar simpel */
+        /* Jika ingin menu hamburger, butuh JavaScript tambahan. 
+           Untuk landing page simpel, biasanya logo saja cukup atau menu di bawah. */
+    }
+    .navbar .container {
+        justify-content: center;
+    }
+}
+        /* --- CSS RESET & GLOBAL STYLES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa; /* Warna latar belakang lembut */
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Warna Utama dari Desain */
+        :root {
+            --pink-accent: #ff69b4; /* Pink sesuai gambar */
+            --red-accent: #ff0000;  /* Merah untuk text blokir */
+            --black-text: #000;
+            --grey-text: #666;
+        }
+
+        /* --- 1. HERO SECTION (Screenshot 6) --- */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 80px 0;
+            background-color: #fff;
+            min-height: 90vh;
+        }
+
+        .hero-text {
+            flex: 1;
+            padding-right: 50px;
+        }
+
+        .hero-text h1 {
+            font-size: 5rem;
+            font-weight: 700;
+            line-height: 1;
+            color: var(--black-text);
+            margin-bottom: 10px;
+        }
+
+        .hero-text .subtitle {
+            font-size: 1.5rem;
+            color: var(--pink-accent);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .hero-text .tagline {
+            font-size: 1rem;
+            color: var(--black-text);
+        }
+
+        .hero-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        /* Placeholder gambar HP dengan Gear */
+        .phone-mockup {
+            font-size: 15rem;
+            color: #333;
+            position: relative;
+        }
+        .gear-icon {
+            position: absolute;
+            font-size: 5rem;
+            color: #3498db;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* --- 2. SERVICES SECTION (Screenshot 7) --- */
+        .services {
+            padding: 80px 0;
+            background-color: #fcfcfc;
+            text-align: center;
+        }
+
+        .services h2 {
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            color: var(--black-text);
+        }
+
+        .services-grid {
+            display: flex;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .service-card {
+            flex: 1;
+            text-align: left;
+            padding: 20px;
+        }
+
+        .service-number {
+            font-size: 4rem;
+            color: var(--pink-accent);
+            font-weight: 300;
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .service-card h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .service-card p {
+            font-size: 0.9rem;
+            color: var(--grey-text);
+        }
+
+        /* --- 3. IMEI SECTION (Screenshot 8) --- */
+        .imei-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 100px 0;
+            background-color: #fff;
+        }
+
+        .imei-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .imei-image i {
+            font-size: 12rem;
+            color: #ccc;
+            position: relative;
+        }
+        
+        /* Ikon sinyal silang */
+        .no-signal {
+            position: absolute;
+            font-size: 8rem;
+            color: var(--red-accent);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0.8;
+        }
+
+        .imei-text {
+            flex: 1;
+            padding-left: 50px;
+        }
+
+        .imei-text h2 {
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 1.1;
+            color: var(--black-text);
+            margin-bottom: 20px;
+        }
+
+        .imei-text .highlight-red {
+            color: var(--red-accent);
+        }
+
+        .imei-text p {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .imei-text small {
+            display: block;
+            margin-top: 10px;
+            color: var(--grey-text);
+        }
+
+       /* --- 4. FOOTER / THANK YOU (REVISI) --- */
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 100px 0;
+    background-color: #f9f9f9;
+    min-height: 80vh; /* Memberi tinggi minimal agar lega */
+}
+
+.footer-content {
+    display: flex;
+    align-items: center; /* Vertikal center */
+    justify-content: center; /* Horizontal center */
+    gap: 100px; /* Jarak lebar antara Ikon HP dan Teks */
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* Wrapper untuk menumpuk ikon HP dan Chat */
+.footer-image-wrapper {
+    position: relative;
+    width: 200px;
+    height: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Ikon HP Besar */
+.icon-phone-big {
+    font-size: 15rem;
+    color: var(--black-text);
+    z-index: 1;
+}
+
+/* Ikon Chat (Bubble) - Diposisikan absolut agar menempel */
+.icon-chat-bubble {
+    position: absolute;
+    font-size: 8rem;
+    color: var(--black-text);
+    background-color: #f9f9f9; /* Samakan warna bg agar garis HP tertutup */
+    border-radius: 50%; /* Agar background membulat */
+    top: 50%;
+    right: -40px; /* Menggeser ke kanan keluar dari HP */
+    z-index: 2; /* Agar di atas HP */
+    transform: translateY(-20%); /* Mengatur posisi vertikal */
+}
+
+.footer-text {
+    flex: 1; /* Mengambil sisa ruang */
+    text-align: left;
+    max-width: 500px;
+}
+
+.footer-text h2 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--black-text);
+}
+
+.footer-text p {
+    color: var(--grey-text);
+    margin-bottom: 30px;
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.contact-info {
+    font-weight: 700;
+    color: var(--pink-accent) !important; /* Paksa warna pink */
+    font-size: 1.1rem;
+}
+
+/* Responsif untuk HP */
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+        gap: 50px;
+        text-align: center;
+    }
+    
+    .footer-image-wrapper {
+        margin-bottom: 20px;
+    }
+
+    .footer-text {
+        text-align: center;
+        padding: 0 20px;
+    }
+}
+
+        /* --- RESPONSIVE (Untuk HP) --- */
+        @media (max-width: 768px) {
+            .hero, .imei-section, .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-text { padding-right: 0; margin-bottom: 40px; }
+            .hero-text h1 { font-size: 3.5rem; }
+            
+            .services-grid { flex-direction: column; }
+            .service-card { text-align: center; }
+            
+            .imei-section { flex-direction: column-reverse; text-align: center; }
+            .imei-text { padding-left: 0; margin-bottom: 40px; }
+            .imei-text h2 { font-size: 2.5rem; }
+
+            .footer-content { flex-direction: column; text-align: center; }
+            .footer-text { text-align: center; }
+        }
+    </style>
+</head>
+<body>
+  <a href="https://wa.me/6289657641919?text=Halo%20RPhone%20Store,%20saya%20ingin%20tanya%20tentang%20layanan%20gadget" 
+   class="floating-wa" 
+   target="_blank" 
+   rel="noopener noreferrer">
+    <i class="fab fa-whatsapp"></i>
+</a>
+<nav class="navbar">
+    <div class="container">
+        <a href="#home" class="navbar-logo">RPhone <span>Store</span></a>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#services">Layanan</a></li>     <li><a href="#imei">Unblock IMEI</a></li>    <li><a href="#contact" class="btn-contact">Hubungi Kami</a></li> </ul>
+    </div>
+</nav>
+    <header class="hero" id="home">
+        <div class="container">
+            <div style="display: flex; flex-wrap: wrap; align-items: center;">
+                <div class="hero-text">
+                    <h1>RPhone<br>Store</h1>
+                    <p class="subtitle">Menerima : Jual-Beli-Service</p>
+                    <p class="tagline">Solusi Gadget Cepat, Harga Tepat!</p>
+                </div>
+                <div class="hero-image">
+                    <div class="phone-mockup">
+                        <i class="fas fa-mobile-alt"></i>
+                        <i class="fas fa-cogs gear-icon"></i>
+                    </div>
+                    </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="services" id="services">
+        <div class="container">
+            <h2>Ada apa aja sih ??</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-number">01</div>
+                    <h3>Jual-Beli</h3>
+                    <p>Jual beli gadget mudah dan aman, harga terbaik, kualitas terjamin. Temukan pilihanmu di sini!</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-number">02</div>
+                    <h3>Tukar Tambah</h3>
+                    <p>Upgrade gadgetmu dengan tukar tambah cepat dan mudah. Dapatkan harga terbaik untuk perangkat lama Anda!</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-number">03</div>
+                    <h3>Service</h3>
+                    <p>Servis gadget berkualitas dengan garansi, harga terjangkau. Perbaikan cepat, hasil memuaskan!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="imei-section" id="imei">
+        <div class="container">
+            <div style="display: flex; flex-wrap: wrap; align-items: center; flex-direction: row-reverse;">
+                 <div class="imei-text">
+                    <h2>IMEI<br>KAMU<br><span class="highlight-red">KEBLOKIR ?</span></h2>
+                    <p>Capek kemana-mana selalu nyari wifi ?</p>
+                    <small>unblock aja harga dijamin murah</small>
+                </div>
+                <div class="imei-image" style="flex: 1; text-align: center;">
+                    <div class="phone-mockup">
+                        <i class="fas fa-hand-holding-medical"></i> <i class="fas fa-signal-slash no-signal"></i> </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+ <footer class="footer" id="contact">
+    <div class="container">
+        <div class="footer-content">
+            
+            <div class="footer-image-wrapper">
+                <i class="fas fa-mobile-alt icon-phone-big"></i>
+                <i class="fas fa-comment-dots icon-chat-bubble"></i>
+            </div>
+
+            <div class="footer-text">
+                <h2>Thank You</h2>
+                <p>Percayakan kebutuhan gadget Anda kepada kami. RPhone Store, solusi lengkap untuk jual, beli, tukar tambah, dan servis terpercaya. Hubungi kami sekarang dan rasakan layanan terbaik!</p>
+                
+                <p class="contact-info">
+                    Contact me to learn more<br>
+                    <span style="color: #333;">+62 896 5764 1919</span>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
