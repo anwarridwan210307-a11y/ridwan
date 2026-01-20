@@ -1,524 +1,649 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RPhone Store - Solusi Gadget Cepat</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RPhone Store - Solusi Gadget Premium</title>
     
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet" />
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
     <style>
-      /* --- FLOATING WHATSAPP BUTTON --- */
-.floating-wa {
-    position: fixed;
-    width: 60px;
-    height: 60px;
-    bottom: 40px;
-    right: 40px;
-    background-color: #25d366; /* Warna khas WhatsApp */
-    color: #FFF;
-    border-radius: 50px;
-    text-align: center;
-    font-size: 30px;
-    box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
-    z-index: 10000; /* Agar selalu di atas segalanya */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    transition: all 0.3s ease;
-}
+        /* --- VARIABLES & RESET --- */
+        :root {
+            --primary: #2d3436;
+            --accent: #e84393; /* Pink lebih deep */
+            --accent-grad: linear-gradient(135deg, #e84393 0%, #6c5ce7 100%);
+            --bg-light: #fdfdfd;
+            --glass: rgba(255, 255, 255, 0.7);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --radius: 20px;
+        }
 
-.floating-wa:hover {
-    background-color: #128c7e;
-    transform: scale(1.1); /* Efek membesar sedikit saat disentuh */
-    color: #FFF;
-}
-
-/* Animasi sederhana agar tombol menarik perhatian */
-@keyframes pulse {
-    0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
-    70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
-}
-
-.floating-wa {
-    animation: pulse 2s infinite;
-}
-      /* --- NAVBAR STYLES --- */
-html {
-    scroll-behavior: smooth; /* Agar scrollnya halus saat diklik */
-}
-
-.navbar {
-    position: fixed; /* Supaya navbar tetap di atas saat discroll */
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: #ffffff;
-    padding: 15px 0;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* Bayangan halus */
-    z-index: 1000; /* Supaya selalu di atas elemen lain */
-}
-
-.navbar .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.navbar-logo {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--black-text);
-    text-decoration: none;
-}
-
-.navbar-logo span {
-    color: var(--pink-accent); /* Aksen Pink pada logo */
-}
-
-.nav-links {
-    list-style: none;
-    display: flex;
-    gap: 30px;
-}
-
-.nav-links a {
-    text-decoration: none;
-    color: #333;
-    font-weight: 600;
-    transition: color 0.3s;
-}
-
-.nav-links a:hover {
-    color: var(--pink-accent);
-}
-
-/* Tombol khusus Kontak di Navbar */
-.btn-contact {
-    background-color: var(--pink-accent);
-    color: white !important;
-    padding: 8px 20px;
-    border-radius: 20px;
-}
-
-.btn-contact:hover {
-    background-color: #d63384;
-}
-
-/* Agar konten tidak tertutup navbar fixed */
-body {
-    padding-top: 70px; 
-}
-
-/* Responsif Navbar untuk HP */
-@media (max-width: 768px) {
-    .nav-links {
-        display: none; /* Sembunyikan menu di HP agar simpel */
-        /* Jika ingin menu hamburger, butuh JavaScript tambahan. 
-           Untuk landing page simpel, biasanya logo saja cukup atau menu di bawah. */
-    }
-    .navbar .container {
-        justify-content: center;
-    }
-}
-        /* --- CSS RESET & GLOBAL STYLES --- */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #f8f9fa; /* Warna latar belakang lembut */
-            color: #333;
-            line-height: 1.6;
+        html {
+            scroll-behavior: smooth;
         }
 
+        body {
+            font-family: 'Outfit', sans-serif; /* Font lebih modern dari Poppins */
+            background-color: var(--bg-light);
+            color: var(--primary);
+            overflow-x: hidden;
+        }
+
+        /* --- UTILITIES --- */
         .container {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
 
-        /* Warna Utama dari Desain */
-        :root {
-            --pink-accent: #ff69b4; /* Pink sesuai gambar */
-            --red-accent: #ff0000;  /* Merah untuk text blokir */
-            --black-text: #000;
-            --grey-text: #666;
+        .btn-main {
+            display: inline-block;
+            padding: 12px 35px;
+            background: var(--accent-grad);
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(232, 67, 147, 0.4);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        /* --- 1. HERO SECTION (Screenshot 6) --- */
+        .btn-main:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(232, 67, 147, 0.6);
+        }
+
+        /* --- FLOATING WA --- */
+        .floating-wa {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25d366;
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 32px;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            z-index: 9999;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .floating-wa:hover {
+            transform: scale(1.1) rotate(10deg);
+        }
+
+        /* --- NAVBAR --- */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 0;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(15px); /* Efek kaca buram */
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary);
+            text-decoration: none;
+            letter-spacing: -1px;
+        }
+
+        .logo span {
+            background: var(--accent-grad);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 500;
+            font-size: 1rem;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: var(--accent);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            padding: 8px 25px;
+            border: 2px solid var(--accent);
+            border-radius: 30px;
+            color: var(--accent);
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .nav-cta:hover {
+            background: var(--accent);
+            color: white;
+        }
+
+        .nav-cta::after { display: none; } /* Override underline */
+
+        /* --- HERO SECTION --- */
         .hero {
+            padding: 160px 0 100px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Blob background shapes */
+        .blob {
+            position: absolute;
+            filter: blur(80px);
+            z-index: -1;
+            opacity: 0.6;
+        }
+        .blob-1 { top: -10%; right: -10%; width: 500px; height: 500px; background: #fab1a0; border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; animation: floatBlob 8s infinite alternate; }
+        .blob-2 { bottom: 10%; left: -10%; width: 400px; height: 400px; background: #74b9ff; border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; animation: floatBlob 10s infinite alternate-reverse; }
+
+        @keyframes floatBlob { from { transform: translate(0, 0); } to { transform: translate(20px, 40px); } }
+
+        .hero-wrapper {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 80px 0;
-            background-color: #fff;
-            min-height: 90vh;
         }
 
-        .hero-text {
+        .hero-content {
             flex: 1;
-            padding-right: 50px;
+            max-width: 600px;
         }
 
-        .hero-text h1 {
-            font-size: 5rem;
-            font-weight: 700;
-            line-height: 1;
-            color: var(--black-text);
-            margin-bottom: 10px;
-        }
-
-        .hero-text .subtitle {
-            font-size: 1.5rem;
-            color: var(--pink-accent);
+        .tagline-box {
+            display: inline-block;
+            background: rgba(232, 67, 147, 0.1);
+            color: var(--accent);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
             font-weight: 600;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
         }
 
-        .hero-text .tagline {
-            font-size: 1rem;
-            color: var(--black-text);
+        .hero-title {
+            font-size: 4.5rem;
+            line-height: 1.1;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: var(--primary);
         }
 
-        .hero-image {
+        .hero-desc {
+            font-size: 1.1rem;
+            color: #636e72;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .stat-item h4 { font-size: 2rem; color: var(--primary); }
+        .stat-item p { font-size: 0.9rem; color: #636e72; }
+
+        .hero-visual {
             flex: 1;
-            text-align: center;
-        }
-
-        /* Placeholder gambar HP dengan Gear */
-        .phone-mockup {
-            font-size: 15rem;
-            color: #333;
+            display: flex;
+            justify-content: center;
             position: relative;
         }
-        .gear-icon {
-            position: absolute;
-            font-size: 5rem;
-            color: #3498db;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+
+        .phone-3d {
+            font-size: 15rem;
+            background: var(--accent-grad);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 20px 30px rgba(108, 92, 231, 0.4));
+            animation: floatPhone 6s ease-in-out infinite;
         }
 
-        /* --- 2. SERVICES SECTION (Screenshot 7) --- */
+        @keyframes floatPhone {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* --- SERVICES SECTION --- */
         .services {
-            padding: 80px 0;
-            background-color: #fcfcfc;
-            text-align: center;
+            padding: 100px 0;
+            background: #fff;
         }
 
-        .services h2 {
-            font-size: 2.5rem;
+        .section-header {
+            text-align: center;
             margin-bottom: 60px;
-            color: var(--black-text);
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
         }
 
         .services-grid {
-            display: flex;
-            justify-content: space-between;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
             gap: 30px;
         }
 
         .service-card {
-            flex: 1;
-            text-align: left;
-            padding: 20px;
+            background: white;
+            padding: 40px 30px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(0,0,0,0.03);
+            z-index: 1;
         }
 
-        .service-number {
-            font-size: 4rem;
-            color: var(--pink-accent);
-            font-weight: 300;
-            line-height: 1;
-            margin-bottom: 10px;
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--accent-grad);
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.4s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            color: white;
+        }
+        
+        .service-card:hover::before { opacity: 1; }
+
+        .icon-box {
+            width: 70px;
+            height: 70px;
+            background: rgba(232, 67, 147, 0.1);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: var(--accent);
+            margin-bottom: 25px;
+            transition: all 0.4s;
+        }
+
+        .service-card:hover .icon-box {
+            background: white;
+            color: #e84393;
         }
 
         .service-card h3 {
-            font-size: 1.2rem;
-            font-weight: 700;
+            font-size: 1.5rem;
             margin-bottom: 15px;
         }
 
         .service-card p {
-            font-size: 0.9rem;
-            color: var(--grey-text);
+            color: #636e72;
+            transition: color 0.4s;
+        }
+        
+        .service-card:hover p { color: rgba(255,255,255,0.9); }
+
+        /* --- IMEI SECTION (Dark Mode) --- */
+        .imei {
+            padding: 100px 0;
+            background: #1e1e1e;
+            color: white;
+            position: relative;
+            overflow: hidden;
         }
 
-        /* --- 3. IMEI SECTION (Screenshot 8) --- */
-        .imei-section {
+        /* Animated background lines for tech feel */
+        .imei::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
+            z-index: 0;
+        }
+
+        .imei-wrapper {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 100px 0;
-            background-color: #fff;
+            position: relative;
+            z-index: 1;
         }
 
-        .imei-image {
+        .imei-visual {
             flex: 1;
-            text-align: center;
-        }
-
-        .imei-image i {
-            font-size: 12rem;
-            color: #ccc;
+            display: flex;
+            justify-content: center;
             position: relative;
         }
-        
-        /* Ikon sinyal silang */
-        .no-signal {
-            position: absolute;
-            font-size: 8rem;
-            color: var(--red-accent);
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            opacity: 0.8;
+
+        .imei-icon-group {
+            position: relative;
         }
 
-        .imei-text {
+        .fa-mobile-screen {
+            font-size: 12rem;
+            color: #333;
+            text-shadow: 0 0 20px rgba(255,255,255,0.1);
+        }
+
+        .signal-cross {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 8rem;
+            color: #ff4757;
+            animation: pulseRed 2s infinite;
+        }
+
+        @keyframes pulseRed {
+            0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+            50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.8; }
+            100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+        }
+
+        .imei-content {
             flex: 1;
             padding-left: 50px;
         }
 
-        .imei-text h2 {
-            font-size: 4rem;
-            font-weight: 800;
-            line-height: 1.1;
-            color: var(--black-text);
+        .imei-content h2 {
+            font-size: 3.5rem;
+            line-height: 1.2;
             margin-bottom: 20px;
         }
 
-        .imei-text .highlight-red {
-            color: var(--red-accent);
+        .text-red {
+            color: #ff4757;
+            background: rgba(255, 71, 87, 0.1);
+            padding: 0 10px;
         }
 
-        .imei-text p {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 10px;
+        .imei-content p {
+            font-size: 1.2rem;
+            color: #bdc3c7;
+            margin-bottom: 30px;
         }
 
-        .imei-text small {
-            display: block;
-            margin-top: 10px;
-            color: var(--grey-text);
+        .btn-warning {
+            background: #ff4757;
+            color: white;
+            padding: 12px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
         }
 
-       /* --- 4. FOOTER / THANK YOU (REVISI) --- */
-.footer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 100px 0;
-    background-color: #f9f9f9;
-    min-height: 80vh; /* Memberi tinggi minimal agar lega */
-}
+        .btn-warning:hover {
+            background: #ff6b81;
+            box-shadow: 0 0 20px rgba(255, 71, 87, 0.5);
+        }
 
-.footer-content {
-    display: flex;
-    align-items: center; /* Vertikal center */
-    justify-content: center; /* Horizontal center */
-    gap: 100px; /* Jarak lebar antara Ikon HP dan Teks */
-    max-width: 1000px;
-    margin: 0 auto;
-}
+        /* --- FOOTER --- */
+        .footer {
+            padding: 80px 0 30px;
+            background: white;
+            text-align: center;
+        }
 
-/* Wrapper untuk menumpuk ikon HP dan Chat */
-.footer-image-wrapper {
-    position: relative;
-    width: 200px;
-    height: 350px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+        .footer-card {
+            background: var(--accent-grad);
+            border-radius: 30px;
+            padding: 60px;
+            color: white;
+            margin-bottom: 50px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .footer-card::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -20%;
+            width: 500px; height: 500px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+        }
 
-/* Ikon HP Besar */
-.icon-phone-big {
-    font-size: 15rem;
-    color: var(--black-text);
-    z-index: 1;
-}
+        .footer-card h2 { font-size: 3rem; margin-bottom: 15px; }
+        .footer-card p { font-size: 1.1rem; opacity: 0.9; margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto; }
 
-/* Ikon Chat (Bubble) - Diposisikan absolut agar menempel */
-.icon-chat-bubble {
-    position: absolute;
-    font-size: 8rem;
-    color: var(--black-text);
-    background-color: #f9f9f9; /* Samakan warna bg agar garis HP tertutup */
-    border-radius: 50%; /* Agar background membulat */
-    top: 50%;
-    right: -40px; /* Menggeser ke kanan keluar dari HP */
-    z-index: 2; /* Agar di atas HP */
-    transform: translateY(-20%); /* Mengatur posisi vertikal */
-}
+        .contact-btn-large {
+            background: white;
+            color: #e84393;
+            padding: 15px 50px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-block;
+            transition: transform 0.2s;
+        }
 
-.footer-text {
-    flex: 1; /* Mengambil sisa ruang */
-    text-align: left;
-    max-width: 500px;
-}
+        .contact-btn-large:hover { transform: scale(1.05); }
 
-.footer-text h2 {
-    font-size: 3.5rem;
-    font-weight: 700;
-    margin-bottom: 20px;
-    color: var(--black-text);
-}
+        .copyright {
+            color: #b2bec3;
+            font-size: 0.9rem;
+        }
 
-.footer-text p {
-    color: var(--grey-text);
-    margin-bottom: 30px;
-    font-size: 1.1rem;
-    line-height: 1.8;
-}
-
-.contact-info {
-    font-weight: 700;
-    color: var(--pink-accent) !important; /* Paksa warna pink */
-    font-size: 1.1rem;
-}
-
-/* Responsif untuk HP */
-@media (max-width: 768px) {
-    .footer-content {
-        flex-direction: column;
-        gap: 50px;
-        text-align: center;
-    }
-    
-    .footer-image-wrapper {
-        margin-bottom: 20px;
-    }
-
-    .footer-text {
-        text-align: center;
-        padding: 0 20px;
-    }
-}
-
-        /* --- RESPONSIVE (Untuk HP) --- */
-        @media (max-width: 768px) {
-            .hero, .imei-section, .footer-content {
+        /* --- RESPONSIVE --- */
+        @media (max-width: 968px) {
+            .hero-wrapper, .imei-wrapper, .services-grid {
                 flex-direction: column;
+                grid-template-columns: 1fr;
                 text-align: center;
             }
 
-            .hero-text { padding-right: 0; margin-bottom: 40px; }
-            .hero-text h1 { font-size: 3.5rem; }
-            
-            .services-grid { flex-direction: column; }
-            .service-card { text-align: center; }
-            
-            .imei-section { flex-direction: column-reverse; text-align: center; }
-            .imei-text { padding-left: 0; margin-bottom: 40px; }
-            .imei-text h2 { font-size: 2.5rem; }
+            .hero-content, .imei-content {
+                padding: 0;
+                margin-bottom: 50px;
+            }
 
-            .footer-content { flex-direction: column; text-align: center; }
-            .footer-text { text-align: center; }
+            .hero-visual, .imei-visual { margin-bottom: 40px; }
+            
+            .hero-title { font-size: 3rem; }
+            
+            .nav-links { display: none; } /* Hide menu on mobile for simplicity */
+            
+            .hero-stats {
+                justify-content: center;
+            }
+            
+            .imei-wrapper { flex-direction: column-reverse; }
         }
     </style>
 </head>
+
 <body>
-  <a href="https://wa.me/6289657641919?text=Halo%20RPhone%20Store,%20saya%20ingin%20tanya%20tentang%20layanan%20gadget" 
-   class="floating-wa" 
-   target="_blank" 
-   rel="noopener noreferrer">
-    <i class="fab fa-whatsapp"></i>
-</a>
-<nav class="navbar">
-    <div class="container">
-        <a href="#home" class="navbar-logo">RPhone <span>Store</span></a>
-        <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#services">Layanan</a></li>     <li><a href="#imei">Unblock IMEI</a></li>    <li><a href="#contact" class="btn-contact">Hubungi Kami</a></li> </ul>
-    </div>
-</nav>
+
+    <a href="https://wa.me/6289657641919?text=Halo%20RPhone%20Store,%20saya%20tertarik%20dengan%20jasa%20Anda" 
+       class="floating-wa" target="_blank" title="Chat WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">RPhone <span>Store.</span></a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#imei">Unblock IMEI</a></li>
+                <li><a href="#contact" class="nav-cta">Hubungi Kami</a></li>
+            </ul>
+        </div>
+    </nav>
+
     <header class="hero" id="home">
-        <div class="container">
-            <div style="display: flex; flex-wrap: wrap; align-items: center;">
-                <div class="hero-text">
-                    <h1>RPhone<br>Store</h1>
-                    <p class="subtitle">Menerima : Jual-Beli-Service</p>
-                    <p class="tagline">Solusi Gadget Cepat, Harga Tepat!</p>
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        
+        <div class="container hero-wrapper">
+            <div class="hero-content" data-aos="fade-right" data-aos-duration="1000">
+                <div class="tagline-box">🚀 Solusi Gadget No.1</div>
+                <h1 class="hero-title">Upgrade & Servis <br> Gadget Impian.</h1>
+                <p class="hero-desc">
+                    Tempat terbaik untuk Jual Beli, Tukar Tambah, dan Service Handphone dengan harga jujur dan pengerjaan kilat.
+                </p>
+                <a href="#services" class="btn-main">Jelajahi Layanan</a>
+                
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <h4>500+</h4>
+                        <p>Unit Terjual</p>
+                    </div>
+                    <div class="stat-item">
+                        <h4>1 Jam</h4>
+                        <p>Servis Kilat</p>
+                    </div>
                 </div>
-                <div class="hero-image">
-                    <div class="phone-mockup">
-                        <i class="fas fa-mobile-alt"></i>
-                        <i class="fas fa-cogs gear-icon"></i>
-                    </div>
-                    </div>
+            </div>
+
+            <div class="hero-visual" data-aos="fade-left" data-aos-duration="1200">
+                <i class="fas fa-mobile-alt phone-3d"></i>
             </div>
         </div>
     </header>
 
     <section class="services" id="services">
         <div class="container">
-            <h2>Ada apa aja sih ??</h2>
+            <div class="section-header" data-aos="fade-up">
+                <h2>Layanan Kami</h2>
+                <p style="color: #888;">Apa saja yang bisa kami bantu hari ini?</p>
+            </div>
+
             <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-number">01</div>
-                    <h3>Jual-Beli</h3>
-                    <p>Jual beli gadget mudah dan aman, harga terbaik, kualitas terjamin. Temukan pilihanmu di sini!</p>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="icon-box">
+                        <i class="fas fa-shopping-bag"></i>
+                    </div>
+                    <h3>Jual Beli</h3>
+                    <p>Cari HP baru atau mau jual HP lama? Kami berikan penawaran harga terbaik sesuai kondisi pasar terkini.</p>
                 </div>
-                <div class="service-card">
-                    <div class="service-number">02</div>
+
+                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="icon-box">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
                     <h3>Tukar Tambah</h3>
-                    <p>Upgrade gadgetmu dengan tukar tambah cepat dan mudah. Dapatkan harga terbaik untuk perangkat lama Anda!</p>
+                    <p>Upgrade gadget jadi lebih hemat. Tukar perangkat lamamu dengan yang baru, proses cepat tanpa ribet.</p>
                 </div>
-                <div class="service-card">
-                    <div class="service-number">03</div>
-                    <h3>Service</h3>
-                    <p>Servis gadget berkualitas dengan garansi, harga terjangkau. Perbaikan cepat, hasil memuaskan!</p>
+
+                <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="icon-box">
+                        <i class="fas fa-screwdriver-wrench"></i>
+                    </div>
+                    <h3>Service Cepat</h3>
+                    <p>LCD pecah? Baterai bocor? Mati total? Teknisi profesional kami siap perbaiki dengan garansi resmi toko.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="imei-section" id="imei">
-        <div class="container">
-            <div style="display: flex; flex-wrap: wrap; align-items: center; flex-direction: row-reverse;">
-                 <div class="imei-text">
-                    <h2>IMEI<br>KAMU<br><span class="highlight-red">KEBLOKIR ?</span></h2>
-                    <p>Capek kemana-mana selalu nyari wifi ?</p>
-                    <small>unblock aja harga dijamin murah</small>
-                </div>
-                <div class="imei-image" style="flex: 1; text-align: center;">
-                    <div class="phone-mockup">
-                        <i class="fas fa-hand-holding-medical"></i> <i class="fas fa-signal-slash no-signal"></i> </div>
+    <section class="imei" id="imei">
+        <div class="container imei-wrapper">
+            <div class="imei-visual" data-aos="zoom-in">
+                <div class="imei-icon-group">
+                    <i class="fas fa-mobile-screen"></i>
+                    <i class="fas fa-ban signal-cross"></i>
                 </div>
             </div>
-        </div>
-    </section>
-
- <footer class="footer" id="contact">
-    <div class="container">
-        <div class="footer-content">
             
-            <div class="footer-image-wrapper">
-                <i class="fas fa-mobile-alt icon-phone-big"></i>
-                <i class="fas fa-comment-dots icon-chat-bubble"></i>
-            </div>
-
-            <div class="footer-text">
-                <h2>Thank You</h2>
-                <p>Percayakan kebutuhan gadget Anda kepada kami. RPhone Store, solusi lengkap untuk jual, beli, tukar tambah, dan servis terpercaya. Hubungi kami sekarang dan rasakan layanan terbaik!</p>
+            <div class="imei-content" data-aos="fade-left">
+                <h2>Sinyal Hilang? <br> IMEI <span class="text-red">Terblokir?</span></h2>
+                <p>Jangan biarkan HP mahalmu jadi sekedar 'iPod'. Kami melayani jasa Unblock IMEI permanen maupun sementara dengan proses aman.</p>
                 
-                <p class="contact-info">
-                    Contact me to learn more<br>
-                    <span style="color: #333;">+62 896 5764 1919</span>
-                </p>
+                <ul style="list-style: none; margin-bottom: 30px; color: #dfe6e9;">
+                    <li style="margin-bottom: 10px;"><i class="fas fa-check-circle" style="color: #2ecc71; margin-right: 10px;"></i> Sinyal All Operator 4G/5G</li>
+                    <li style="margin-bottom: 10px;"><i class="fas fa-check-circle" style="color: #2ecc71; margin-right: 10px;"></i> Proses Jarak Jauh Bisa</li>
+                    <li><i class="fas fa-check-circle" style="color: #2ecc71; margin-right: 10px;"></i> Bergaransi</li>
+                </ul>
+
+                <a href="https://wa.me/6289657641919?text=Halo,%20saya%20mau%20unblock%20IMEI" class="btn-warning">
+                    <i class="fab fa-whatsapp"></i> Konsultasi IMEI
+                </a>
             </div>
         </div>
-    </div>
-</footer>
+    </section>
 
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-card" data-aos="zoom-in-up">
+                <h2>Siap Ganti Gadget?</h2>
+                <p>Hubungi RPhone Store sekarang juga. Konsultasi gratis, harga manis, pelayanan fantastis.</p>
+                <a href="https://wa.me/6289657641919" class="contact-btn-large">Hubungi Kami Sekarang</a>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2020 RPhone Store. All Rights Reserved. <br>
+                <small>Designed with <i class="fas fa-heart" style="color: var(--accent);"></i> in Indonesia</small>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true, // animasi hanya berjalan sekali saat scroll ke bawah
+            offset: 100, // offset pemicu animasi
+        });
+    </script>
 </body>
 </html>
